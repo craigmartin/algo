@@ -5,14 +5,17 @@ class ShuntingYardAlgorithm
   end
 end
 class ShuntingYardAlgorithmTest < Test::Unit::TestCase
+  def setup
+    @algorithm = ShuntingYardAlgorithm.new
+  end
+  def assert_expression_becomes(expression, expected)
+    result = @algorithm.convert(expression)
+    assert_equal(expected, result)
+  end
   def test_empty_string_results_in_same
-    algorithm = ShuntingYardAlgorithm.new
-    result = algorithm.convert('')
-    assert_equal('', result)
+    assert_expression_becomes('', '')
   end
   def test_constant_value_results_in_same
-    algorithm = ShuntingYardAlgorithm.new
-    result = algorithm.convert('42')
-    assert_equal('42', result)
+    assert_expression_becomes('42', '42')
   end
 end
